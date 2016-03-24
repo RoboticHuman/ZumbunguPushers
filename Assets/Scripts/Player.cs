@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Player : MovingObject {
@@ -41,8 +41,7 @@ public class Player : MovingObject {
 
 		Enemy enemy = col.gameObject.GetComponent<Enemy>();
 		if (enemy) {
-			Debug.Log(Time.deltaTime);
-			bIsPushing = true;
+			rigidBody.velocity = Vector2.zero;
 			enemy.Push (rigidBody.velocity);
 		}
 	}
@@ -53,8 +52,3 @@ public class Player : MovingObject {
 	}
 
 }
-
-
-
-
-
