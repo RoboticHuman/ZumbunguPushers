@@ -14,7 +14,6 @@ public abstract class MovingObject : MonoBehaviour {
 	
 	protected virtual void Start () {
 		rigidBody = GetComponent<Rigidbody2D>();
-		bIsPushing = false;
 	}
 
 	protected virtual void Move () {
