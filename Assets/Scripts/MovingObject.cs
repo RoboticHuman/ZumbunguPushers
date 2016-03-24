@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class MovingObject : MonoBehaviour {
@@ -9,7 +9,6 @@ public abstract class MovingObject : MonoBehaviour {
 	protected RaycastHit2D floor;
 	protected float rotationTime;
 	protected float pushStopTime;
-	protected bool bIsPushing;
 	protected Rigidbody2D rigidBody;
 
 	
@@ -38,16 +37,6 @@ public abstract class MovingObject : MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, floor.transform.rotation, (float)(rotationTime/0.5) ) ;
 		} else
 			rotationTime = 0;
-
-		if (bIsPushing) {
-			pushStopTime += Time.deltaTime;
-			rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, Vector2.zero, pushStopTime/stoppingTime);
-		}
-
-		if (bIsPushing && rigidBody.velocity.magnitude <= float.Epsilon) {
-			bIsPushing = false;
-			pushStopTime = 0;
-		}
 	}
 
 	protected RaycastHit2D checkFloor() {
@@ -63,9 +52,3 @@ public abstract class MovingObject : MonoBehaviour {
 	
 	public abstract bool Push (Vector2 force);
 }
-
-
-
-
-
-
