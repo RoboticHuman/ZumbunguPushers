@@ -4,6 +4,8 @@ using System.Collections;
 public class Player : MovingObject {
 	
 	protected override void Move () {
+		if (!isLocalPlayer)
+			return;
 		int horizontal = (int) Input.GetAxisRaw ("Horizontal");
 		int vertical = (int) Input.GetAxisRaw ("Vertical");
 		Vector2 dir;
@@ -38,7 +40,8 @@ public class Player : MovingObject {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-
+		if (!isLocalPlayer)
+			return;
 		Enemy enemy = col.gameObject.GetComponent<Enemy>();
 		if (enemy) {
 			rigidBody.velocity = Vector2.zero;

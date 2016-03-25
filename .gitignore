@@ -18,6 +18,9 @@ ExportedObj/
 *.booproj
 *.svd
 
+*.exe
+*.pdb
+
 
 # ============ #
 # OS generated #

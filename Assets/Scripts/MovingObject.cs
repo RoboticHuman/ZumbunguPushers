@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public abstract class MovingObject : MonoBehaviour {
+public abstract class MovingObject : NetworkBehaviour {
 
 	public LayerMask blockingLayer;			//Layer on which collision will be checked.
 	public float checkFloorDist;
@@ -30,6 +31,8 @@ public abstract class MovingObject : MonoBehaviour {
 
 
 	protected void Update () {
+		if (!isLocalPlayer)
+			return;
 		floor = checkFloor();
 		if (floor) {
 			rotationTime += Time.deltaTime;
